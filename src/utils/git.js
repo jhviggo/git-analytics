@@ -1,12 +1,12 @@
 async function description() {
-    return null;
+  return null;
 }
 
 async function logs(short=True) {
-    return null;
+  return null;
 }
 
 module.exports = {
-    description,
-    logs,
+  description,
+  logs,
 };
