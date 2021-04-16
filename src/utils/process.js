@@ -8,15 +8,23 @@ const { 'exec': exec_process } = require("child_process");
  * @returns {Promise<object>} the command standart output
  */
 async function exec(command) {
-    return new Promise((resolve, rejects) => {
-        exec_process(command, (error, stdout, stderr) => {
-            if (error) rejects(error);
-            else if (stderr) rejects(stderr);
-            resolve(stdout);
-        });
+  return new Promise((resolve, rejects) => {
+    exec_process(command, (error, stdout, stderr) => {
+      if (error) rejects(error);
+      else if (stderr) rejects(stderr);
+      resolve(stdout);
     });
+  });
 }
 
+(async () => {
+  try {
+    console.log(await exec('git log'));
+  } catch (error) {
+    console.log(error);
+  }
+})()
+
 module.exports = {
-    exec,
+  exec,
 }

@@ -11,7 +11,8 @@
     "url": "https://github.com/jhviggo/git-analytics.git"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src/app.js",
+    "start": "node src/app.js"
   },
   "author": "Viggo Petersen",
   "license": "ISC",
