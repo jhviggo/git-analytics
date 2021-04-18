@@ -3,5 +3,21 @@ include includes/git-description.pug
 
 block content 
   h1= title 
-  
-  +gitDescription(message)
+  span Log name: 
+    a(href="/git/log")= log.name
+
+  each commit in log.commits
+    h3
+      a(href="/git/commit/" + commit.hash)= commit.hash
+    p #{commit.developer.name} - #{commit.date}
+    +gitDescription(commit.message)
+    each value, key in commit.fileChangesOverview
+      span #{key}: #{value}
+      br
+    
+    ul 
+     each file in commit.fileChanges 
+      if file.isRename
+        li #{file.file} => #{file.newFile}
+      else 
+        li= file.file

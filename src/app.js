@@ -1,7 +1,6 @@
 // packages
 const express = require('express');
 const morgan = require('morgan');
-const path = require('path');
 require('dotenv').config();
 
 // custom
@@ -11,10 +10,11 @@ const router = require('./router');
 const app = express();
 app.use(morgan(LOGGING_LEVEL));
 app.use(express.json());
-app.set('view engine', 'pug')
+app.set('view engine', 'pug');
 app.set('views', './src/views');
 
 // routes
+app.use(express.static('public'));
 app.use(router);
 
 // listen
