@@ -1,18 +1,17 @@
 class Commit {
   // variables
   hash;
-  isMerge;
   developer;
-  commitDate;
-  commitMessage;
+  date;
+  message;
   fileChanges;
   fileChangesOverview;
 
   // constructor
-  constructor(hash, isMerge) {
+  constructor(hash) {
     this.hash = hash;
-    this.isMerge = isMerge;
     this.fileChanges = [];
+    this.message = '';
   }
 
   // setters
@@ -21,13 +20,13 @@ class Commit {
     return this;
   }
 
-  setDate(d) {
-    this.commitDate = d;
+  setDate(date) {
+    this.date = date;
     return this;
   }
 
   setMessage(m) {
-    this.commitMessage = m;
+    this.message = m;
     return this;
   }
 
@@ -36,9 +35,18 @@ class Commit {
     return this;
   }
 
+  setFileChangesOverview(overview) {
+    this.fileChangesOverview = overview;
+    return this;
+  }
+
   // methods
   addFileChange(change) {
     this.fileChanges.push(change);
+  }
+
+  amendMessage(m) {
+    this.message += m;
   }
 }
 
