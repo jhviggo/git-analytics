@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { getGitLogStats, getCommit, getHotspots } = require('./controllers/index');
+const { getGitLogStats, getCommit, getHotspots, getKnowledgeMap } = require('./controllers/index');
 
 // route: /api/**
 router.use('/api/log', async (_, res) => {
@@ -14,6 +14,10 @@ router.use('/api/commit/:hash', async (req, res) => {
 
 router.use('/api/hotspot', async (_, res) => {
   res.send(await getHotspots());
+});
+
+router.use('/api/knowledge-map', async (_, res) => {
+  res.send(await getKnowledgeMap());
 });
 
 // route: /
