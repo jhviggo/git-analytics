@@ -4,11 +4,11 @@ include includes/git-description.pug
 block content 
   h1= title 
   span Log name: 
-    a(href="/git/log")= log.name
+    a(href="/api/log")= log.name
 
   each commit in log.commits
     h3
-      a(href="/git/commit/" + commit.hash)= commit.hash
+      a(href="/api/commit/" + commit.hash)= commit.hash
     p #{commit.developer.name} - #{commit.date}
     +gitDescription(commit.message)
     each value, key in commit.fileChangesOverview
@@ -18,6 +18,6 @@ block content
     ul 
      each file in commit.fileChanges 
       if file.isRename
-        li #{file.file} => #{file.newFile}
+        li #{file.name} => #{file.newName}
       else 
-        li= file.file
+        li= file.name

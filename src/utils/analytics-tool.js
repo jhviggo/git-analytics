@@ -1,4 +1,4 @@
-async function countFileChanges(log, exclude=[]) {
+async function countFileChanges(log, exclude=[], sortBy='changeCount') {
   // filename: { lineCount, changeCount }
   // lineCount is the amount of lines that have been changed
   // changeCount is the amount of times the file has been modified
@@ -6,7 +6,7 @@ async function countFileChanges(log, exclude=[]) {
 
   for (const commit of log.commits) {
     for (const file of commit.fileChanges) {
-      const fileName = file.isRename ? file.newFile : file.file;
+      const fileName = file.isRename ? file.newName : file.name;
 
       // exclude files
       if (exclude.includes(fileName)) continue;
@@ -20,15 +20,18 @@ async function countFileChanges(log, exclude=[]) {
       else {
         hotspot[fileName] = {
           lineCount: Number(file.lineCount),
-          changeCount: 1
+          changeCount: 1,
+          fileName,
         };
       }
 
     }
   }
   
-  // console.log(hotspot);
-  return hotspot;
+  // Array of values sorted descending by sortBy key
+  return Object
+    .values(hotspot)
+    .sort((a, b) => b[sortBy] - a[sortBy]);
 }
 
 module.exports = {
