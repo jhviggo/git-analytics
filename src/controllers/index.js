@@ -29,7 +29,14 @@ async function getCommit(hash, path) {
   return log.commits.find(i => i.hash === hash);
 }
 
+async function getHotspots(path) {
+  if (!log) await setParsedLog(path);
+
+  return await countFileChanges(log);
+}
+
 module.exports = {
   getGitLogStats,
   getCommit,
+  getHotspots,
 };
