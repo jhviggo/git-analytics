@@ -1,12 +1,15 @@
 const { exec } = require('../utils/process');
 const LogParser = require('../utils/git-parser');
-const { countFileChanges } = require('../utils/analytics-tool');
+const { countFileChanges, knowledgeMap } = require('../utils/analytics-tool');
 
 let log;
 
 async function setParsedLog(path) {
   try {
-    const output = await exec('git log --stat --no-merges', path);
+    // --stat shows files changes
+    // --stat-witdt is used to show entire file path
+    // --no-merge removes branch merges
+    const output = await exec('git log --stat --stat-width=250 --no-merges', path);
     const parser = new LogParser(output);
     countFileChanges(parser.log);
     log = parser.log;
@@ -35,8 +38,15 @@ async function getHotspots(path) {
   return await countFileChanges(log);
 }
 
+async function getKnowledgeMap(path) {
+  if (!log) await setParsedLog(path);
+
+  return await knowledgeMap(log);
+}
+
 module.exports = {
   getGitLogStats,
   getCommit,
   getHotspots,
+  getKnowledgeMap,
 };
