@@ -1,4 +1,8 @@
 extends layouts/layout.pug 
 
+block scripts
+  script(src='knowledge-map.js', defer)
+
 block content 
   h1 Knowledge Map
+  div#container
