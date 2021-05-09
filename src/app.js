@@ -15,6 +15,7 @@ app.set('views', './src/views');
 
 // routes
 app.use(express.static('public'));
+app.use(express.static('src/views/scripts'));
 app.use(router);
 
 // listen
