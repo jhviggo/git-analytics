@@ -5,7 +5,7 @@ const { getGitLogStats, getCommit, getHotspots, getKnowledgeMap } = require('./c
 
 // route: /api/**
 router.use('/api/log', async (_, res) => {
-  res.send(await getGitLogStats())
+  res.send(await getGitLogStats());
 });
 
 router.use('/api/commit/:hash', async (req, res) => {
@@ -22,7 +22,17 @@ router.use('/api/knowledge-map', async (_, res) => {
 
 // route: /
 router.use(/\/$/, async (_, res) => {
-  res.render('index', { title: 'Git analytics', log: await getGitLogStats() })
+  res.render('index', { title: 'Git analytics', log: await getGitLogStats() });
+});
+
+// route: hotspots
+router.use('/hotspots', async (_, res) => {
+  res.render('hotspots');
+});
+
+// route: knowledge-map
+router.use('/knowledge-map', async (_, res) => {
+  res.render('knowledge-map');
 });
 
 module.exports = router;
