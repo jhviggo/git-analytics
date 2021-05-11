@@ -35,7 +35,20 @@ async function getCommit(hash, path) {
 async function getHotspots(path) {
   if (!log) await setParsedLog(path);
 
-  return await countFileChanges(log);
+  const hotspots = await countFileChanges(log)
+
+  const max = hotspots
+    .reduce((a, b) => (a.changeCount > b.changeCount) ? a : b)
+    .changeCount;
+
+  hotspots.forEach(item => {
+    item['value'] = item.changeCount / max * 100;
+  })
+
+  return {
+    name: 'File Changes',
+    children: hotspots,
+  };
 }
 
 async function getKnowledgeMap(path) {
