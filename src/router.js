@@ -12,7 +12,7 @@ router.use('/api/commit/:hash', async (req, res) => {
   res.send(await getCommit(req.params.hash));
 });
 
-router.use('/api/hotspot', async (_, res) => {
+router.use('/api/hotspots', async (_, res) => {
   res.send(await getHotspots());
 });
 
