@@ -3,8 +3,9 @@ include includes/git-description.pug
 
 block content 
   h1= title 
-  span Log name: 
-    a(href="/api/log")= log.name
+  div: a(href="/hotspots" class="btn btn-outline-primary") hotspots
+  //span Log name: 
+  //  a(href="/api/log")= log.name
 
   each commit in log.commits
     h3

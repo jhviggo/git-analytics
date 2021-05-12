@@ -29,8 +29,6 @@ async function drawHotspots() {
 
   packLayout(rootNode);
 
-  console.log(rootNode)
-
   // Read data
 
   var Tooltip = d3.select("#container")
@@ -41,22 +39,24 @@ async function drawHotspots() {
     .style("border", "solid")
     .style("border-width", "2px")
     .style("border-radius", "5px")
-    .style("padding", "5px")
+    .style("padding", "5px");
 
   
   var mouseover = function() {
     Tooltip
       .style("opacity", 1)
+      .style("display", "block");
   }
-  var mousemove = function(_, i) {
+  var mousemove = function(e, i) {
     Tooltip
       .html('<u>' + i.data.fileName + '</u>' + "<br>" + i.data.changeCount + " file changes" + "<br>" + i.data.lineCount + " line changes")
-      .style("left", i.x + "px")
-      .style("top", i.x + "px")
+      .style("left", (e.clientX + 10) + "px")
+      .style("top", (e.clientY + 10) + "px");
   }
   var mouseleave = function() {
     Tooltip
       .style("opacity", 0)
+      .style("display", "none");
   }
   
 
