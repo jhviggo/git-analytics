@@ -1,24 +1,36 @@
 extends layouts/layout.pug 
 include includes/git-description.pug
 
-block content 
-  h1= title 
-  div: a(href="/hotspots" class="btn btn-outline-primary") hotspots
-  //span Log name: 
-  //  a(href="/api/log")= log.name
+block scripts
+  script(src='index.js', defer)
 
-  each commit in log.commits
-    h3
-      a(href="/api/commit/" + commit.hash)= commit.hash
-    p #{commit.developer.name} - #{commit.date}
-    +gitDescription(commit.message)
-    each value, key in commit.fileChangesOverview
-      span #{key}: #{value}
-      br
-    
-    ul 
-     each file in commit.fileChanges 
-      if file.isRename
-        li #{file.name} => #{file.newName}
-      else 
-        li= file.name
+block content 
+  h1= title
+  div#tree
+    div#bar
+    each commit in log.commits
+      span.circle
+      div(class="commit")
+        span(onclick="expandCommit(this)" class="commit-title")= commit.message.split('\n')[0]
+        div.hidden
+          a(type="button" class="btn btn-outline-primary" href="/api/commit/" + commit.hash) API
+          p #{commit.developer.name} - #{commit.date}
+          +gitDescription(commit.message)
+          
+          ul.four-grid
+            each file in commit.fileChanges 
+              if file.isRename
+                span #{file.name} => #{file.newName}
+              else 
+                span= file.name
+                
+              span |
+              span= file.lineCount
+              if file.distribution
+                span -
+                span #{((file.distribution.split("+").length-1)/file.distribution.length*100).toFixed(2)}% insertions
+
+          p 
+            span #{commit.fileChangesOverview['files changed']} files changed,
+            span #{commit.fileChangesOverview['insertions']} insertions,
+            span #{commit.fileChangesOverview['deletions']} deletions

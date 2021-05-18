@@ -1,8 +1,97 @@
+/* body */
+body {
+  background-color: #f6f6f6;
+}
+
+/* Navigation menu */
+.nav-bar {
+  height: 4rem;
+  display: grid;
+  grid-template-columns: auto 1fr 1fr;
+  box-shadow: 0 0 4px rgba(0, 0, 0, .2)
+}
+
+.logo {
+  height: 3rem;
+  margin: .5rem;
+  cursor: pointer;
+  transition-duration: 0.8s;
+  transition-property: transform;
+}
+
+.logo:hover {
+  transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+}
+
 .node:hover{
   stroke-width: 7px !important;
   opacity: 1 !important;
 }
 
+.nav-buttons {
+  display: grid;
+  justify-items: center;
+  align-items: end;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  justify-items: center;
+  margin-bottom: .5rem;
+}
+
+.nav-buttons a {
+  text-decoration: unset;
+  color: black;
+}
+
+.nav-buttons a:hover {
+  border-bottom: 4px solid rgba(0, 0, 0, 0);
+}
+
+/* page: index */
+#tree {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+}
+
+#bar {
+  position: absolute;
+  display: flex;
+  height: 100%;
+  width: 3px;
+  background: lightgreen;
+  margin-left: 4.5px;
+}
+
+.commit-title {
+  cursor: pointer;
+}
+
+.commit {
+  padding-left: 1rem;
+  margin-left: .25rem;
+}
+
+.commit span {
+  margin-left: .5rem;
+  font-weight: bold;
+}
+
+.commit div {
+  margin-left: 1rem;
+}
+
+.expanded {
+  display: block !important;
+}
+
+.four-grid {
+  display: grid;
+  grid-template-columns: repeat(4, auto) 1fr;
+}
+
+/* page: hotspots */
 .tooltip {
   position: absolute;
   z-index: 1070;
@@ -25,4 +114,19 @@
   font-size: .875rem;
   word-wrap: break-word;
   opacity: 0;
+}
+
+/* globals */
+.hidden {
+  display: none;
+}
+
+.circle {
+  height: 12px;
+  display: block;
+  width: 12px;
+  border: 2px solid black;
+  border-radius: 50%;
+  background-color: #f6f6f6;
+  z-index: 1;
 }
