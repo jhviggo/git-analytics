@@ -45,6 +45,7 @@ async function knowledgeMap(log) {
         map[file.name] = {
           fileName: file.name,
           counts: {},
+          fileCounts: {},
         }
       }
 
@@ -52,13 +53,23 @@ async function knowledgeMap(log) {
       const oldCount = Object.keys(map[file.name].counts).includes(commit.developer.name)
         ? map[file.name].counts[commit.developer.name]
         : 0;
+      
+      // ad developer to fileCount is they do not exist
+      const oldFileCount = Object.keys(map[file.name].fileCounts).includes(commit.developer.name)
+        ? map[file.name].fileCounts[commit.developer.name]
+        : 0;
 
       map[file.name].counts[commit.developer.name] = Number(oldCount) + Number(file.lineCount);
+      map[file.name].fileCounts[commit.developer.name] = Number(oldFileCount) + 1
     }
   }
 
   for (const key of Object.keys(map)) {
     map[key].totalCount = Object.values(map[key].counts).reduce((a, b) => a + b, 0);
+  }
+
+  for (const key of Object.keys(map)) {
+    map[key].totalFileCount = Object.values(map[key].fileCounts).reduce((a, b) => a + b, 0);
   }
 
   return Object.values(map).sort((a, b) => b.totalCount - a.totalCount);

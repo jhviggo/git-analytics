@@ -1,8 +1,20 @@
 extends layouts/layout.pug 
 
 block scripts
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.1/chart.min.js", defer)
   script(src='knowledge-map.js', defer)
 
 block content 
   h1 Knowledge Map
   div#container
+    label(for="colour-shift") Color picker
+    br
+    input(id="colour-shift" type="number" value="5" min="1")
+    canvas#context
+    div.alert.alert-info.mt-3.row
+      div.col-6
+        h3= outerTitle
+        p= outerDesc
+      div.col-6
+        h3= innerTitle
+        p= innerDesc

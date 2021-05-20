@@ -32,7 +32,12 @@ router.use('/hotspots', async (_, res) => {
 
 // route: knowledge-map
 router.use('/knowledge-map', async (_, res) => {
-  res.render('knowledge-map');
+  res.render('knowledge-map', {
+    outerTitle: 'Outer ring',
+    outerDesc: 'The outer ring describes the total line count over all commits.',
+    innerTitle: 'Inner ring',
+    innerDesc: 'The inner ring describes the total file changes.'
+  });
 });
 
 module.exports = router;
