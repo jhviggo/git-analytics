@@ -21,8 +21,28 @@ router.use('/api/knowledge-map', async (_, res) => {
 });
 
 // route: /
-router.use(/\/$/, async (_, res) => {
-  res.render('index', { title: 'Git analytics', log: await getGitLogStats() });
+router.use(/\/$/, async (req, res) => {
+  const log = await getGitLogStats();
+  const perPage = 30;
+  const maxPage = parseInt(log.commits.length / perPage) + 1;
+  const page = parseInt(req.query.page)
+    ? parseInt(req.query.page) - 1
+    : 0;
+  const from = page * perPage >= log.commits.length
+    ? (maxPage - 1) * perPage
+    : page * perPage
+  
+  const to = from + perPage;
+
+  console.log('from', from, 'to', to, 'page', page);
+  res.render('index', {
+    title: 'Git analytics',
+    log,
+    from,
+    to,
+    maxPage,
+    page: page,
+  });
 });
 
 // route: hotspots

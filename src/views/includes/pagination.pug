@@ -1,0 +1,25 @@
+mixin pagination(page, maxPage)
+  nav.mt-3
+    ul.pagination
+      if page === 0
+        li.page-item.disabled
+          a(class="page-link" href="/?page=1") First
+        li.page-item.disabled
+          a(class="page-link" href="/?page=" + page) prev
+      else 
+        li.page-item
+          a(class="page-link" href="/?page=1") First
+        li.page-item
+          a(class="page-link" href="/?page=" + page) prev
+      li.page-item.disabled
+        a(class="page-link")= (page + 1) + '/' + maxPage
+      if page === maxPage - 1
+        li.page-item.disabled
+          a(class="page-link" href="/?page=" + (page + 2)) next
+        li.page-item.disabled
+          a(class="page-link" href="/?page=" + maxPage) Last
+      else 
+        li.page-item
+          a(class="page-link" href="/?page=" + (page + 2)) next
+        li.page-item
+        a(class="page-link" href="/?page=" + maxPage) Last

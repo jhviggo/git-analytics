@@ -1,5 +1,6 @@
 extends layouts/layout.pug 
 include includes/git-description.pug
+include includes/pagination.pug
 
 block scripts
   script(src='index.js', defer)
@@ -8,10 +9,10 @@ block content
   h1= title
   div#tree
     div#bar
-    each commit in log.commits
+    each commit in log.commits.slice(from,to)
       span.circle
       div(class="commit")
-        span(onclick="expandCommit(this)" class="commit-title")= commit.message.split('\n')[0]
+        span(onclick="expandCommit(this)" class="commit-title text-truncate")= commit.message.split('\n')[0]
         div.hidden
           a(type="button" class="btn btn-outline-primary" href="/api/commit/" + commit.hash) API
           p #{commit.developer.name} - #{commit.date}
@@ -34,3 +35,5 @@ block content
             span #{commit.fileChangesOverview['files changed']} files changed,
             span #{commit.fileChangesOverview['insertions']} insertions,
             span #{commit.fileChangesOverview['deletions']} deletions
+  +pagination(page, maxPage)
+  
