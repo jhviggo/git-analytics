@@ -1,5 +1,5 @@
 const { 'exec': exec_process } = require("child_process");
-const { CMD_PATH } = require('../config/env');
+const { CMD_PATH, STDIO_MAXBUFFER_KB } = require('../config/env');
 
 /**
  * Promisify the child_process.exec function. It uses regular promise instead
@@ -16,7 +16,7 @@ async function exec(command, cmdPath) {
   }
 
   return new Promise((resolve, rejects) => {
-    exec_process(command, { cwd: cmdPath }, (error, stdout, stderr) => {
+    exec_process(command, { cwd: cmdPath, maxBuffer: 1024 * STDIO_MAXBUFFER_KB }, (error, stdout, stderr) => {
       if (error) rejects(error);
       else if (stderr) rejects(stderr);
       resolve(stdout);
