@@ -12,6 +12,7 @@ class Commit {
     this.hash = hash;
     this.fileChanges = [];
     this.message = '';
+    this.fileChangesOverview = {};
   }
 
   // setters
