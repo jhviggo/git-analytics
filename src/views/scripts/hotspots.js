@@ -72,7 +72,9 @@ async function drawHotspots() {
     .attr("cy", (d) => d.y)
     .style("fill-opacity", 0.8)
     .attr("stroke", "black")
-    .style("fill", "blue")
+    .style("fill", (d) => {
+      return '#' + generateColour(d.data.fileName.substring(0, d.data.fileName.lastIndexOf('/') + 1));
+    })
     .style("stroke-width", 1)
     .on("mouseover", mouseover)
     .on("mousemove", mousemove)
