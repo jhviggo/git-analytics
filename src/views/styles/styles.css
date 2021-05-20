@@ -116,6 +116,11 @@ body {
   opacity: 0;
 }
 
+/* page: knowledge-map */
+#context {
+  max-height: 50vh;
+}
+
 /* globals */
 .hidden {
   display: none;
