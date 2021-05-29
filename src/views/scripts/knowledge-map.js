@@ -69,13 +69,13 @@ async function init() {
                 const totalCount = context.dataset.data.reduce((a, b) => a + b, 0);
 
                 if (context.datasetIndex === 0) {
-                  return `${context.formattedValue} total line changes (${(context.parsed / totalCount * 100).toFixed(2)}%)`;
+                  return `${context.formattedValue} total line changes (${(context.parsed / totalCount * 100).toFixed(2)}%) [${context.label}]`;
                 } else {
-                  return `${context.formattedValue} total file changes (${(context.parsed / totalCount * 100).toFixed(2)}%)`;
+                  return `${context.formattedValue} total file changes (${(context.parsed / totalCount * 100).toFixed(2)}%) [${context.label}]`;
                 }
               }
           }
-      }
+        }
       }
     }
   });
