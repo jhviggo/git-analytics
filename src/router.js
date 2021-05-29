@@ -34,7 +34,6 @@ router.use(/\/$/, async (req, res) => {
   
   const to = from + perPage;
 
-  console.log('from', from, 'to', to, 'page', page);
   res.render('index', {
     title: 'Git analytics',
     log,

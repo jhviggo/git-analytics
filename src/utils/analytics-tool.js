@@ -46,21 +46,21 @@ async function knowledgeMap(log) {
           fileName: file.name,
           counts: {},
           fileCounts: {},
-        }
+        };
       }
 
       // add developer to counts if they do not exist
-      const oldCount = Object.keys(map[file.name].counts).includes(commit.developer.name)
-        ? map[file.name].counts[commit.developer.name]
+      const oldCount = Object.keys(map[file.name].counts).includes(commit.developer.email)
+        ? map[file.name].counts[commit.developer.email]
         : 0;
       
       // ad developer to fileCount is they do not exist
-      const oldFileCount = Object.keys(map[file.name].fileCounts).includes(commit.developer.name)
-        ? map[file.name].fileCounts[commit.developer.name]
+      const oldFileCount = Object.keys(map[file.name].fileCounts).includes(commit.developer.email)
+        ? map[file.name].fileCounts[commit.developer.email]
         : 0;
 
-      map[file.name].counts[commit.developer.name] = Number(oldCount) + Number(file.lineCount);
-      map[file.name].fileCounts[commit.developer.name] = Number(oldFileCount) + 1
+      map[file.name].counts[commit.developer.email] = Number(oldCount) + Number(file.lineCount);
+      map[file.name].fileCounts[commit.developer.email] = Number(oldFileCount) + 1;
     }
   }
 

@@ -9,6 +9,7 @@ const {
   AUTHOR,
   DATE,
 } = require('../config/keywords');
+const { EMAIL_MATCH, EMAIL_OTHER, EMAIL_REGEX } = require('../config/env');
 
 class LogParser {
   logString;
@@ -48,7 +49,17 @@ class LogParser {
       // ----- author
       else if (line.startsWith(AUTHOR)) {
         const match = line.match(authorMatcher);
-        currentCommit.setDeveloper(new Developer(match[1], match[2]));
+        let devEmail;
+        
+        if (Object.keys(EMAIL_MATCH).includes(match[2])) {
+          devEmail = EMAIL_MATCH[match[2]];
+        } else if (EMAIL_REGEX && match[2].match(EMAIL_REGEX)) {
+          devEmail = 'Other';
+        } else {
+          devEmail = match[2];
+        }
+
+        currentCommit.setDeveloper(new Developer(match[1], devEmail));
       }
       // ----- date
       else if (line.startsWith(DATE)) {

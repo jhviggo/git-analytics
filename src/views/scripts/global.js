@@ -1,10 +1,10 @@
 /**
- * Based on https://stackoverflow.com/questions/2464745/compute-hex-color-code-for-an-arbitrary-string
+ * Based on https://stackoverflow.com/questions/3426404/create-a-hexadecimal-colour-based-on-a-string-with-javascript
  * 
  * @param {string} str 
  * @returns {string} hex colour
  */
- function generateColour(str, shift=5) {
+function generateColour(str, shift=5) {
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
       hash = str.charCodeAt(i) + ((hash << shift) - hash);
