@@ -13,4 +13,15 @@ This is the final project for my Datamatiker degree (AP CS)
 ## configure
 There are two interesting environment variables: EMAIL_MATCH and EMAIL_REGEX.
 * EMAIL_REGEX is a simple regex string, which will group matching emails as 'other' on the knowledge map.
-* EMAIL_MATCH is a string using the format "email1=email2,email3=email2", which will convert both email1 and email3 to email2. If I had a primary email viggo@email.com and a secondary email myOtherEmail@email.cool, I would map the secondary as "myOtherEmail@email.cool=viggo@email.com" so all my commits would show under my primary email.
+* EMAIL_MATCH is a string using the format "old_email=new_email", example "email1=email2,email3=email2" will show all emails as email2. If I had a primary email viggo@email.com and a secondary email myOtherEmail@email.cool, I would map the secondary as "myOtherEmail@email.cool=viggo@email.com" so all my commits would show under my primary email.
+
+## environment variables
+None of the environment variables are required but may be needed.
+```
+PORT=1337
+LOGGING_LEVEL="short"
+CMD_PATHS="C:/Users/Viggo/Documents/projects/some-repository"
+STDIO_MAXBUFFER_KB=5000
+EMAIL_MATCH="viggo-second-email@mail.com=vig56@hotmail.com"
+EMAIL_REGEX="gmail.com"
+```
