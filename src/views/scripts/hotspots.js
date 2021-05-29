@@ -1,3 +1,8 @@
+/**
+ * Fetches the hotspots JSON and returns it as an object
+ * 
+ * @returns {Array<object>} the hotspots object
+ */
 async function fetchHotspots() {
   const response = await fetch('/api/hotspots', {
     headers: {
@@ -7,6 +12,9 @@ async function fetchHotspots() {
   return response.json();
 }
 
+/**
+ * Creates the SVG container, creates the circle packing layout and draws the hotspot circles based on the data fetched
+ */
 async function drawHotspots() {
   var width = 800
   var height = 600

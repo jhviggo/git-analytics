@@ -9,7 +9,7 @@ const {
   AUTHOR,
   DATE,
 } = require('../config/keywords');
-const { EMAIL_MATCH, EMAIL_OTHER, EMAIL_REGEX } = require('../config/env');
+const { EMAIL_MATCH, EMAIL_REGEX } = require('../config/env');
 
 class LogParser {
   logString;
@@ -26,6 +26,9 @@ class LogParser {
     this.parse();
   }
 
+  /**
+   * Parses the logString passed into the instance and creates a Log object
+   */
   parse() {
     const authorMatcher = /\s(.+)\s<(.+)>$/;
     const dateMatcher = /^Date:\s*(.+)/;

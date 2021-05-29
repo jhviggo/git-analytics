@@ -1,3 +1,8 @@
+/**
+ * Fetches the knowledge map JSON and returns it as an object
+ * 
+ * @returns {Array<object>} the knowledge map object
+ */
 async function fetchKnowledgeMaps() {
   const response = await fetch('/api/knowledge-map', {
     headers: {
@@ -26,7 +31,7 @@ function sumDeveloperLineChanges(data, key='counts') {
 }
 
 /**
- * Initialize the charts
+ * Initialize the charts by mapping to fetched data into arrays and passes these to Chart.js
  */
 async function init() {
   const mapData = await fetchKnowledgeMaps();

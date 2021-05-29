@@ -1,5 +1,6 @@
 const emailMatcherFormatted = {};
 
+// Maps the EMAIL_MATCH string into an object "emailA=emailB" = {emailA: 'emailB'}
 if (process.env.EMAIL_MATCH) {
   process.env.EMAIL_MATCH.split(',')
     .map(i => i.split('='))
