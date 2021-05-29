@@ -1,3 +1,13 @@
+const Log = require("../models/log");
+
+/**
+ * Counts all file and line changes throughout all commits.
+ * 
+ * @param {Log} log the log object
+ * @param {Array<string>} exclude the list of files to exclude from the count
+ * @param {string} sortBy the object key to sort the returned array by
+ * @returns {Array<object>} An array of the counted files and their line changes
+ */
 async function countFileChanges(log, exclude=[], sortBy='changeCount') {
   // filename: { lineCount, changeCount }
   // lineCount is the amount of lines that have been changed
@@ -34,6 +44,12 @@ async function countFileChanges(log, exclude=[], sortBy='changeCount') {
     .sort((a, b) => b[sortBy] - a[sortBy]);
 }
 
+/**
+ * Counts the file and line changes per developer by email
+ * 
+ * @param {Log} log the log object
+ * @returns {Array<object>} the knowledge map over changes based on developers
+ */
 async function knowledgeMap(log) {
   // { file: { counts: { devName: 123 }, totalCount: 123} }
   const map = {};

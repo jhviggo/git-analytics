@@ -2,6 +2,7 @@
  * Based on https://stackoverflow.com/questions/3426404/create-a-hexadecimal-colour-based-on-a-string-with-javascript
  * 
  * @param {string} str 
+ * @param {number} shift
  * @returns {string} hex colour
  */
 function generateColour(str, shift=5) {
